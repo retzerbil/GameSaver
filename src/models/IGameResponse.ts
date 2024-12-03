@@ -1,9 +1,12 @@
+import { IDealResponse } from "./IDealResponse";
+
 export interface IGameResponse{
     gameID: number,
-    steamAppID: number,
+    steamAppID?: number,
     cheapest: number,
     cheapestDealID: string,
     external: string,
     internalName: string,
     thumb: string,
+    deal?: IDealResponse
 }
