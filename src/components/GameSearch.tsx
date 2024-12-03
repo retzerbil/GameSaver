@@ -1,5 +1,5 @@
-import { Button, List, TextInput } from "@mantine/core"
-import { useState } from "react"
+import { Button, List, TextInput } from "@mantine/core";
+import { useState } from "react";
 import { getGames } from "../Services/getGames";
 import { IGameResponse } from "../models/IGameResponse";
 
@@ -23,30 +23,40 @@ export const GameSearch = () => {
             setError('Failed to fetch games');
             console.error(err);
         }
-    }
+    };
 
-    return(
+    return (
         <>
-        <form onSubmit={handleSearch}>
-            <TextInput 
-                label="Search for a game"
-                description="Enter the name of the game you want to search for"
-                placeholder="Enter game name" 
-                value={query}
-                onChange={(event) => setQuery(event.currentTarget.value)}
-            />
-            <Button type="submit" variant="filled" color="orange">Search!</Button>
-        </form>
-        {error && <div>{error}</div>}
-        <List>
-            {results && results.map((game) => (
-                <List.Item key={game.gameID}>
-                    {game.external}
-                    {game.cheapest}
-                    <img src={game.thumb} alt={game.external} />
-                </List.Item>
-            ))}
-        </List>
+            <form onSubmit={handleSearch}>
+                <TextInput
+                    label="Search for a game"
+                    description="Enter the name of the game you want to search for"
+                    placeholder="Enter game name"
+                    value={query}
+                    onChange={(event) => setQuery(event.currentTarget.value)}
+                />
+                <Button type="submit" variant="filled" color="orange">Search!</Button>
+            </form>
+            {error && <div>{error}</div>}
+            <List>
+                {results && results.map((game) => (
+                    <List.Item key={game.gameID}>
+                        <div>{game.external}</div>
+                        <div>Cheapest Price: ${game.cheapest}</div>
+                        {/* Safe access using optional chaining */}
+                        {game.deal ? (
+                            <>
+                                <div>Discount: {game.deal.savings}%</div>
+                                <div>Sale Price: ${game.deal.salePrice}</div>
+                                <div>Original Price: ${game.deal.normalPrice}</div>
+                            </>
+                        ) : (
+                            <div>No deal available</div>
+                        )}
+                        <img src={game.thumb} alt={game.external} />
+                    </List.Item>
+                ))}
+            </List>
         </>
     );
-}
+};
