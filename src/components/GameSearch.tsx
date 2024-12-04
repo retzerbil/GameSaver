@@ -53,6 +53,7 @@ export const GameSearch = () => {
                                 <h3>Discount: {calculateDiscount(+game.deal.gameInfo.retailPrice, +game.deal.gameInfo.salePrice)}%</h3>
                                 <h3>Sale Price: ${game.deal.gameInfo.salePrice}</h3>
                                 <h3>Original Price: ${game.deal.gameInfo.retailPrice}</h3>
+                                <a href={`https://www.cheapshark.com/redirect?dealID=${game.cheapestDealID}`}>Go to store!</a>
                             </>
                         ) : (
                             <div>No deal available</div>
