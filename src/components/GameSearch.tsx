@@ -25,6 +25,10 @@ export const GameSearch = () => {
         }
     };
 
+    const calculateDiscount = (retailPrice: number, salePrice: number) => {
+        return Math.round(((retailPrice - salePrice) / retailPrice) * 100);
+    }
+
     return (
         <>
             <form onSubmit={handleSearch}>
@@ -46,9 +50,9 @@ export const GameSearch = () => {
                         {/* Safe access using optional chaining */}
                         {game.deal ? (
                             <>
-                                <div>Discount: {game.deal.savings}%</div>
-                                <div>Sale Price: ${game.deal.salePrice}</div>
-                                <div>Original Price: ${game.deal.normalPrice}</div>
+                                <h3>Discount: {calculateDiscount(+game.deal.gameInfo.retailPrice, +game.deal.gameInfo.salePrice)}%</h3>
+                                <h3>Sale Price: ${game.deal.gameInfo.salePrice}</h3>
+                                <h3>Original Price: ${game.deal.gameInfo.retailPrice}</h3>
                             </>
                         ) : (
                             <div>No deal available</div>
