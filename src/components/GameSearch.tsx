@@ -1,6 +1,6 @@
 import { Button, List, TextInput } from "@mantine/core";
 import { useState } from "react";
-import { getGames } from "../Services/getGames";
+import { getGames, getGamesMock } from "../Services/getGames";
 import { IGameResponse } from "../models/IGameResponse";
 
 export const GameSearch = () => {
@@ -12,7 +12,7 @@ export const GameSearch = () => {
         event.preventDefault();
         setError(null);
         try {
-            const games = await getGames(query);
+            const games = await getGamesMock(query);
             console.log('Response from getGames:', games); // Log the response to see its structure
             if (Array.isArray(games)) {
                 setResults(games);
