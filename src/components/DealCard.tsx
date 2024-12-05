@@ -27,8 +27,10 @@ export const DealCard = ({game}: IDealCardProps) => {
                            <Text>{game.external}</Text> 
                            <Badge color="green">{calculateDiscount(+game.deal.gameInfo.retailPrice, +game.cheapest)}%</Badge>
                         </Group>
+                        <Group justify="space-between">
                         <Text td="line-through">${game.deal.gameInfo.retailPrice}</Text>
                         <Text>${game.cheapest}</Text>
+                        </Group>
                         <Button color="orange" fullWidth mt="md" radius="md"><a href={`https://www.cheapshark.com/redirect?dealID=${game.cheapestDealID}`} target="_blank">Go to store!</a></Button>
                     </>
                 ) : (
