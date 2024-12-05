@@ -1,57 +1,40 @@
 import { Anchor, Badge, Button, Card, Group, Image, Text } from "@mantine/core";
-import { IGameResponse } from "../models/IGameResponse";
+import { IDealSearchResponse } from "../models/IDealSearchResponse";
 
 interface IDealCardProps {
-	game: IGameResponse;
+	deal: IDealSearchResponse;
 }
 
-const calculateDiscount = (retailPrice: number, salePrice: number) => {
-	return Math.round(((retailPrice - salePrice) / retailPrice) * 100);
-};
-export const DealCard = ({ game }: IDealCardProps) => {
+export const DealCard = ({ deal }: IDealCardProps) => {
 	return (
-		<Card shadow="sm" padding="lg" radius="md" withBorder>
+		<Card shadow="sm" padding="lg" radius="md" withBorder w="300px">
 			<Card.Section>
-				{game.deal ? (
-					<>
-						<Image
-							radius="md"
-							h={200}
-							src={game.thumb}
-							w="100%"
-							alt={game.external + "box art"}
-							style={{ objectFit: "cover" }}
-						></Image>
+				<Image
+					radius="md"
+					src={deal.thumb}
+					w="200px"
+					fallbackSrc="https://placehold.co/600x400?text={deal.title}"
+				/>
 
-						<Group justify="space-between" mt="md" mb="xs">
-							<Text>{game.external}</Text>
-							<Badge color="green">
-								{calculateDiscount(
-									+game.deal.gameInfo.retailPrice,
-									+game.cheapest
-								)}
-								%
-							</Badge>
-						</Group>
+				<Group justify="space-between" mt="md" mb="xs">
+					<Text>{deal.title}</Text>
+					<Badge color="green">{Math.round(+deal.savings)}%</Badge>
+				</Group>
 
-						<Group justify="space-between">
-							<Text td="line-through">${game.deal.gameInfo.retailPrice}</Text>
-							<Text>${game.cheapest}</Text>
-						</Group>
+				<Group justify="space-between">
+					<Text td="line-through">${deal.normalPrice}</Text>
+					<Text>${deal.salePrice}</Text>
+				</Group>
 
-						<Button color="orange" fullWidth mt="md" radius="md">
-							<Anchor
-								underline="never"
-								href={`https://www.cheapshark.com/redirect?dealID=${game.cheapestDealID}`}
-								target="_blank"
-							>
-								Go to store!
-							</Anchor>
-						</Button>
-					</>
-				) : (
-					<div>No deal available</div>
-				)}
+				<Button color="orange" w="200px" mt="md" radius="md">
+					<Anchor
+						underline="never"
+						href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
+						target="_blank"
+					>
+						Go to store!
+					</Anchor>
+				</Button>
 			</Card.Section>
 		</Card>
 	);

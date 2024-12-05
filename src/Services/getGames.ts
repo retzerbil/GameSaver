@@ -1,4 +1,4 @@
-import axios from "axios";
+/* import axios from "axios";
 import { IGameResponse } from "../models/IGameResponse";
 import { IDealResponse } from "../models/IDealResponse";
 import { getDeals, getDealsmock } from "./getDeals"; // Import the getDeals function
@@ -47,3 +47,4 @@ export const getGames = async (
 
     return gamesWithDeals;
 };
+ */

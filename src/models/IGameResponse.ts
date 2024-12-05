@@ -1,4 +1,4 @@
-import { IDealResponse } from "./IDealResponse";
+/* import { IDealResponse } from "./IDealResponse";
 
 export interface IGameResponse{
     gameID: number,
@@ -9,4 +9,4 @@ export interface IGameResponse{
     internalName: string,
     thumb: string,
     deal?: IDealResponse
-}
+} */
