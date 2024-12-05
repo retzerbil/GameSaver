@@ -1,4 +1,4 @@
-import { Group } from "@mantine/core";
+import { Container, Group, Text } from "@mantine/core";
 import { NavLink, Outlet } from "react-router-dom";
 
 export const Layout = () => {
@@ -21,16 +21,20 @@ export const Layout = () => {
 			<main>
 				<Outlet />
 			</main>
-			<footer>
-                <Group>
-				<small>Retzerbil coding LLC</small>
-				<small style={{ fontSize: "0.8rem", color: "gray" }}>
-					Disclaimer: The deals shown on this page are updated periodically.
-					Prices and availability may change quickly, and deals can expire
-					without notice. GameSaver recommend checking the store's website for the most
-					accurate and current information.
-				</small>
-                </Group>
+			<footer style={{ padding: "20px 0", backgroundColor: "#f8f8f8" }}>
+				<Container>
+					<Group justify="space-between">
+						<Text size="sm" color="dimmed">
+							Retzerbil coding LLC
+						</Text>
+					</Group>
+					<Text size="xs" color="dimmed" mt="xs">
+						Disclaimer: The deals shown on this page are updated periodically.
+						Prices and availability may change quickly, and deals can expire
+						without notice. GameSaver recommend checking the store's website for the
+						most accurate and current information.
+					</Text>
+				</Container>
 			</footer>
 		</>
 	);
