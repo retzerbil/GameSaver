@@ -14,15 +14,16 @@ import { IDealSearchResponse } from "../models/IDealSearchResponse";
 
 export const GameSearch = () => {
 	const [query, setQuery] = useState("");
+    const [lastQuery, setLastQuery] = useState("");
 	const [results, setResults] = useState<IDealSearchResponse[] | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [activePage, setActivePage] = useState(1);
 	const [pageSize, setPageSize] = useState(10);
 	const [isLoading, setIsLoading] = useState(false);
-	const [totalResults, setTotalResults] = useState(0); // Total results from API
+	const [totalResults, setTotalResults] = useState(0);
 
 	const fetchDeals = async () => {
-		if (!query) return; // Prevent search if query is empty
+		if (!query) return;
 
 		setIsLoading(true);
 		setError(null);
@@ -40,23 +41,23 @@ export const GameSearch = () => {
 
 	const handleSearch = (event: React.FormEvent) => {
 		event.preventDefault();
-		setActivePage(1); // Reset to first page on a new search
+		setActivePage(1);
+        setLastQuery(query);
 		fetchDeals();
 	};
 
 	const handlePageSizeChange = (size: string | null) => {
 		if (size) {
 			setPageSize(Number(size));
-			setIsLoading(true); // Show loader when page size changes
+			setIsLoading(true);
 		}
 	};
 
-	// Trigger the fetch when page size or active page changes
 	useEffect(() => {
 		if (query) {
 			fetchDeals();
 		}
-	}, [activePage, pageSize]); // Dependency on pageSize and activePage, but not query
+	}, [activePage, pageSize]);
 
 	return (
 		<>
@@ -75,6 +76,10 @@ export const GameSearch = () => {
 
 			{isLoading && <Loader color="orange" />}
 			{error && <p style={{ color: "red" }}>{error}</p>}
+
+			{!isLoading && results && results.length === 0 && (
+				<p>No games found for <em>"{lastQuery}"</em>. Please try a different search query.</p>
+			)}
 
 			<List spacing="md" mt="lg">
 				{results?.map((deal) => (
