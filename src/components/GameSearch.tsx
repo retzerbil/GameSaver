@@ -2,6 +2,7 @@ import { Button, List, TextInput } from "@mantine/core";
 import { useState } from "react";
 import { getGames, getGamesMock } from "../Services/getGames";
 import { IGameResponse } from "../models/IGameResponse";
+import { DealCard } from "./DealCard";
 
 export const GameSearch = () => {
     const [query, setQuery] = useState('');
@@ -25,10 +26,6 @@ export const GameSearch = () => {
         }
     };
 
-    const calculateDiscount = (retailPrice: number, salePrice: number) => {
-        return Math.round(((retailPrice - salePrice) / retailPrice) * 100);
-    }
-
     return (
         <>
             <form onSubmit={handleSearch}>
@@ -42,23 +39,17 @@ export const GameSearch = () => {
                 <Button type="submit" variant="filled" color="orange">Search!</Button>
             </form>
             {error && <div>{error}</div>}
-            <List>
+            <List listStyleType="none">
                 {results && results.map((game) => (
-                    <List.Item key={game.gameID}>
-                        <div>{game.external}</div>
-                        <div>Cheapest Price: ${game.cheapest}</div>
+                    <List.Item key={game.gameID} >
                         {/* Safe access using optional chaining */}
                         {game.deal ? (
                             <>
-                                <h3>Discount: {calculateDiscount(+game.deal.gameInfo.retailPrice, +game.cheapest)}%</h3>
-                                <h3>Sale Price: ${game.deal.gameInfo.salePrice}</h3>
-                                <h3>Original Price: ${game.deal.gameInfo.retailPrice}</h3>
-                                <a href={`https://www.cheapshark.com/redirect?dealID=${game.cheapestDealID}`} target="_blank">Go to store!</a>
+                                <DealCard game={game} />
                             </>
                         ) : (
                             <div>No deal available</div>
                         )}
-                        <img src={game.thumb} alt={game.external} />
                     </List.Item>
                 ))}
             </List>
