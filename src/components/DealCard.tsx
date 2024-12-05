@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Group, Image, Text } from "@mantine/core";
+import { Anchor, Badge, Button, Card, Group, Image, Text } from "@mantine/core";
 import { IGameResponse } from "../models/IGameResponse";
 
 interface IDealCardProps {
@@ -31,7 +31,7 @@ export const DealCard = ({game}: IDealCardProps) => {
                         <Text td="line-through">${game.deal.gameInfo.retailPrice}</Text>
                         <Text>${game.cheapest}</Text>
                         </Group>
-                        <Button color="orange" fullWidth mt="md" radius="md"><a href={`https://www.cheapshark.com/redirect?dealID=${game.cheapestDealID}`} target="_blank">Go to store!</a></Button>
+                        <Button color="orange" fullWidth mt="md" radius="md"><Anchor underline="never" href={`https://www.cheapshark.com/redirect?dealID=${game.cheapestDealID}`} target="_blank">Go to store!</Anchor></Button>
                     </>
                 ) : (
                     <div>No deal available</div>
