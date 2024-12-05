@@ -14,7 +14,7 @@ import { IDealSearchResponse } from "../models/IDealSearchResponse";
 
 export const GameSearch = () => {
 	const [query, setQuery] = useState("");
-    const [lastQuery, setLastQuery] = useState("");
+	const [lastQuery, setLastQuery] = useState("");
 	const [results, setResults] = useState<IDealSearchResponse[] | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [activePage, setActivePage] = useState(1);
@@ -42,7 +42,7 @@ export const GameSearch = () => {
 	const handleSearch = (event: React.FormEvent) => {
 		event.preventDefault();
 		setActivePage(1);
-        setLastQuery(query);
+		setLastQuery(query);
 		fetchDeals();
 	};
 
@@ -78,7 +78,10 @@ export const GameSearch = () => {
 			{error && <p style={{ color: "red" }}>{error}</p>}
 
 			{!isLoading && results && results.length === 0 && (
-				<p>No games found for <em>"{lastQuery}"</em>. Please try a different search query.</p>
+				<p>
+					No games found for <em>"{lastQuery}"</em>. Please try a different
+					search query.
+				</p>
 			)}
 
 			<List spacing="md" mt="lg">
