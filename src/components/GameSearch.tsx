@@ -1,11 +1,9 @@
 import {
 	Button,
 	Group,
-	List,
 	Pagination,
 	Select,
 	TextInput,
-	Loader,
 	Flex,
 	LoadingOverlay,
 } from "@mantine/core";
