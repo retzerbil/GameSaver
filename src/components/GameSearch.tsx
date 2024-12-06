@@ -6,6 +6,7 @@ import {
 	Select,
 	TextInput,
 	Loader,
+	Flex,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { DealCard } from "./DealCard";
@@ -21,7 +22,7 @@ export const GameSearch = () => {
 	const [pageSize, setPageSize] = useState(10);
 	const [isLoading, setIsLoading] = useState(false);
 	const [totalResults, setTotalResults] = useState(0);
-	const [sortOption, setSortOption] = useState('alphabetical');
+	const [sortOption, setSortOption] = useState("alphabetical");
 
 	const fetchDeals = async () => {
 		if (!query) return;
@@ -52,25 +53,25 @@ export const GameSearch = () => {
 			setSortOption(value);
 			sortResults(value);
 		}
-    };
+	};
 
-    const sortResults = (option: string) => {
+	const sortResults = (option: string) => {
 		let sortedResults = results ? [...results] : [];
-        switch (option) {
-            case 'alphabetical':
-                sortedResults.sort((a, b) => a.title.localeCompare(b.title));
-                break;
-            case 'lowestPrice':
-                sortedResults.sort((a, b) => +a.salePrice - +b.salePrice);
-                break;
-            case 'highestDiscount':
-                sortedResults.sort((a, b) => +b.savings - +a.savings);
-                break;
-            default:
-                break;
-        }
-        setResults(sortedResults);
-    };
+		switch (option) {
+			case "alphabetical":
+				sortedResults.sort((a, b) => a.title.localeCompare(b.title));
+				break;
+			case "lowestPrice":
+				sortedResults.sort((a, b) => +a.salePrice - +b.salePrice);
+				break;
+			case "highestDiscount":
+				sortedResults.sort((a, b) => +b.savings - +a.savings);
+				break;
+			default:
+				break;
+		}
+		setResults(sortedResults);
+	};
 
 	const handlePageSizeChange = (size: string | null) => {
 		if (size) {
@@ -110,25 +111,34 @@ export const GameSearch = () => {
 				</p>
 			)}
 
-			<Group>
-                <Select
-                    label="Sort by"
-                    placeholder="Choose sorting option"
-                    data={[
-                        { value: 'alphabetical', label: 'Alphabetical' },
-                        { value: 'lowestPrice', label: 'Lowest Price' },
-                        { value: 'highestDiscount', label: 'Highest Discount' },
-                    ]}
-                    value={sortOption}
-                    onChange={handleSortChange}
-                />
-            </Group>
+			{results && results.length > 0 && (
+				<Group>
+					<Select
+						label="Sort by"
+						placeholder="Choose sorting option"
+						data={[
+							{ value: "alphabetical", label: "Alphabetical" },
+							{ value: "lowestPrice", label: "Lowest Price" },
+							{ value: "highestDiscount", label: "Highest Discount" },
+						]}
+						value={sortOption}
+						onChange={handleSortChange}
+					/>
+				</Group>
+			)}
 
-			<List spacing="md" mt="lg">
+			<Flex
+				mih={50}
+				gap="xl"
+				justify="flex-start"
+				align="center"
+				direction="row"
+				wrap="wrap"
+			>
 				{results?.map((deal) => (
 					<DealCard key={deal.dealID} deal={deal} />
 				))}
-			</List>
+			</Flex>
 
 			{results && results.length > 0 && (
 				<Group>
