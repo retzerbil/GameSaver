@@ -1,6 +1,6 @@
 import { GameSearch } from "../components/GameSearch"
 
-export const Home = () => {
+export const Deals = () => {
     return (
         <div>
             <h1>GameSaver</h1>

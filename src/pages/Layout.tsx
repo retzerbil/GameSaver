@@ -13,7 +13,7 @@ export const Layout = () => {
 							<NavLink to={"/"}>Start</NavLink>
 						</li>
 						<li>
-							<NavLink to={"/Home"}>Home</NavLink>
+							<NavLink to={"/Deals"}>Deals</NavLink>
 						</li>
 					</ul>
 				</nav>
@@ -31,8 +31,10 @@ export const Layout = () => {
 					<Text size="xs" color="dimmed" mt="xs">
 						Disclaimer: The deals shown on this page are updated periodically.
 						Prices and availability may change quickly, and deals can expire
-						without notice. GameSaver recommends checking the store's website for the
-						most accurate and current information.
+						without notice. GameSaver recommends checking the store's website
+						for the most accurate and current information. Please note that
+						games with ended sales may take time to be removed from the API and
+						may show up as 0% discounts.
 					</Text>
 				</Container>
 			</footer>

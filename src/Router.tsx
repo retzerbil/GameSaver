@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./pages/Layout";
-import { Home } from "./pages/Home";
+import { Deals } from "./pages/Deals";
 import { NotFound } from "./pages/NotFound";
 
 export const Router = createBrowserRouter([{
     path: "/",
     element: <Layout />,
     children: [{
-        path:"/home",
-        element: <Home />
+        path:"/deals",
+        element: <Deals />
     }
 ],
 errorElement: <NotFound></NotFound>
