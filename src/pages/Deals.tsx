@@ -1,4 +1,4 @@
-import { GameSearch } from "../components/GameSearch"
+import { GameSearch } from "../components/GameSearch";
 
 export const Deals = () => {
     return (
@@ -7,5 +7,5 @@ export const Deals = () => {
             <p>Welcome to GameSaver! </p>
             <GameSearch />
         </div>
-    )
-}
+    );
+};

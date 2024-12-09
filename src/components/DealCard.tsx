@@ -1,11 +1,13 @@
 import { Anchor, Badge, Button, Card, Group, Image, Text } from "@mantine/core";
 import { IDealSearchResponse } from "../models/IDealSearchResponse";
+import { IStoreResponse } from "../models/IStoreResponse";
 
 interface IDealCardProps {
 	deal: IDealSearchResponse;
+	store?: IStoreResponse;
 }
 
-export const DealCard = ({ deal }: IDealCardProps) => {
+export const DealCard = ({ deal, store }: IDealCardProps) => {
 	return (
 		<Card shadow="sm" padding="lg" radius="md" withBorder w="300px">
 			<Card.Section>
@@ -25,6 +27,19 @@ export const DealCard = ({ deal }: IDealCardProps) => {
 					<Text td="line-through">${deal.normalPrice}</Text>
 					<Text>${deal.salePrice}</Text>
 				</Group>
+				{store && (
+					<Group>
+						<Text>{store.storeName}</Text>
+						{store?.images?.icon && (
+							<Image
+								src={`https://www.cheapshark.com${store.images.icon}`}
+								alt={store.storeName}
+								style={{ width: "20px", height: "20px" }}
+								fallbackSrc="https://placehold.co/100x100?text=No+Image" // Fallback in case image doesn't load
+							/>
+						)}
+					</Group>
+				)}
 
 				<Button color="orange" w="200px" mt="md" radius="md">
 					<Anchor

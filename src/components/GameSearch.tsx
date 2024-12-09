@@ -11,6 +11,8 @@ import { useState, useEffect } from "react";
 import { DealCard } from "./DealCard";
 import { getDealsSearch } from "../Services/getDeals";
 import { IDealSearchResponse } from "../models/IDealSearchResponse";
+import { IStoreResponse } from "../models/IStoreResponse";
+import { getStores } from "../Services/getStores"; // Adjust the import path as needed
 
 export const GameSearch = () => {
 	const [query, setQuery] = useState("");
@@ -22,6 +24,7 @@ export const GameSearch = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [totalResults, setTotalResults] = useState(0);
 	const [sortOption, setSortOption] = useState("alphabetical");
+	const [stores, setStores] = useState<IStoreResponse[]>([]);
 
 	const fetchDeals = async () => {
 		if (!query) return;
@@ -85,6 +88,21 @@ export const GameSearch = () => {
 		}
 	}, [activePage, pageSize]);
 
+	useEffect(() => {
+		const fetchStores = async () => {
+			const storedStores = localStorage.getItem("stores");
+			if (storedStores) {
+				setStores(JSON.parse(storedStores));
+			} else {
+				const fetchedStores = await getStores();
+				localStorage.setItem("stores", JSON.stringify(fetchedStores));
+				setStores(fetchedStores);
+			}
+		};
+
+		fetchStores();
+	}, []);
+
 	return (
 		<>
 			<form onSubmit={handleSearch}>
@@ -139,9 +157,26 @@ export const GameSearch = () => {
 					wrap="wrap"
 					mt="lg"
 				>
-					{results?.map((deal) => (
-						<DealCard key={deal.dealID} deal={deal} />
-					))}
+					{results?.map((deal) => {
+						// Find the store associated with the deal
+						console.log("Deal storeID:", deal.storeID);
+						console.log("Stores:", stores);
+						console.log(
+							"Matching store:",
+							stores?.find((store) => store.storeID === String(deal.storeID))
+						);
+						const store = stores?.find(
+							(store) => store.storeID === String(deal.storeID)
+						);
+
+						return (
+							<DealCard
+								key={deal.dealID}
+								deal={deal}
+								store={store} // Pass the specific store or undefined
+							/>
+						);
+					})}
 				</Flex>
 
 				{results && results.length > 0 && (
