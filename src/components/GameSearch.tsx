@@ -110,8 +110,9 @@ export const GameSearch = () => {
 
 				{!isLoading && results && results.length === 0 && (
 					<p>
-						No games found for <em>"{lastQuery}"</em>. Please try a different
-						search query.
+						No games found for <em>"{lastQuery}"</em>. The game may not
+						currently be on sale, or there may be an error in the search
+						spelling. Please try a different search query.
 					</p>
 				)}
 				{results && results.length > 0 && (
