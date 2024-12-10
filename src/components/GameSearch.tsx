@@ -26,55 +26,58 @@ export const GameSearch = () => {
 	const [sortOption, setSortOption] = useState("alphabetical");
 	const [stores, setStores] = useState<IStoreResponse[]>([]);
 
-	const fetchDeals = async () => {
-		if (!query) return;
+    const fetchDeals = async () => {
+        if (!query) return;
 
-		setIsLoading(true);
-		setError(null);
+        setIsLoading(true);
+        setError(null);
 
-		try {
-			const games = await getDealsSearch(query, pageSize, activePage);
-			setResults(games);
-			setTotalResults(100); // Replace with the actual `totalResults` from API
-		} catch (err) {
-			setError("Failed to fetch games");
-		} finally {
-			setIsLoading(false);
-		}
-	};
+        try {
+            const response = await getDealsSearch(query, pageSize, activePage);
+            console.log('response', response);
+            setResults(response.deals);
+            setTotalResults(response.totalResults);
+            sortResults(sortOption, response.deals);
+        } catch (err) {
+            setError("Failed to fetch games");
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-	const handleSearch = (event: React.FormEvent) => {
-		event.preventDefault();
-		setActivePage(1);
-		setLastQuery(query);
-		fetchDeals();
-	};
+    const handleSearch = (event: React.FormEvent) => {
+        event.preventDefault();
+        setActivePage(1);
+        setLastQuery(query);
+        fetchDeals();
+    };
 
-	const handleSortChange = (value: string | null) => {
-		if (value) {
-			setSortOption(value);
-			sortResults(value);
-		}
-	};
+    const handleSortChange = (value: string | null) => {
+        const newSortOption = value || "alphabetical";
+        setSortOption(newSortOption);
+        if (results) {
+            sortResults(newSortOption, results);
+        }
+    };
 
-	const sortResults = (option: string) => {
-		let sortedResults = results ? [...results] : [];
-		switch (option) {
-			case "alphabetical":
-				sortedResults.sort((a, b) => a.title.localeCompare(b.title));
-				break;
-			case "lowestPrice":
-				sortedResults.sort((a, b) => +a.salePrice - +b.salePrice);
-				break;
-			case "highestDiscount":
-				sortedResults.sort((a, b) => +b.savings - +a.savings);
-				break;
-			default:
-				break;
-		}
-		setResults(sortedResults);
-	};
-
+    const sortResults = (option: string, deals: IDealSearchResponse[]) => {
+        let sortedResults = [...deals];
+        switch (option) {
+            case "alphabetical":
+                sortedResults.sort((a, b) => a.title.localeCompare(b.title));
+                break;
+            case "lowestPrice":
+                sortedResults.sort((a, b) => +a.salePrice - +b.salePrice);
+                break;
+            case "highestDiscount":
+                sortedResults.sort((a, b) => +b.savings - +a.savings);
+                break;
+            default:
+                break;
+        }
+        setResults(sortedResults);
+    };
+	
 	const handlePageSizeChange = (size: string | null) => {
 		if (size) {
 			setPageSize(Number(size));
@@ -158,9 +161,6 @@ export const GameSearch = () => {
 					mt="lg"
 				>
 					{results?.map((deal) => {
-						// Find the store associated with the deal
-						console.log("Deal storeID:", deal.storeID);
-						console.log("Stores:", stores);
 						console.log(
 							"Matching store:",
 							stores?.find((store) => store.storeID === String(deal.storeID))
@@ -173,7 +173,7 @@ export const GameSearch = () => {
 							<DealCard
 								key={deal.dealID}
 								deal={deal}
-								store={store} // Pass the specific store or undefined
+								store={store}
 							/>
 						);
 					})}

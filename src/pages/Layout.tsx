@@ -22,7 +22,13 @@ export const Layout = () => {
 				<main>
 					<Outlet />
 				</main>
-				<footer style={{marginTop: "1rem", padding: "2rem 0", backgroundColor: "#f8f8f8" }}>
+				<footer
+					style={{
+						marginTop: "1rem",
+						padding: "2rem 0",
+						backgroundColor: "#f8f8f8",
+					}}
+				>
 					<Container>
 						<Group justify="space-between">
 							<Text size="sm" color="dimmed">
@@ -35,6 +41,8 @@ export const Layout = () => {
 								the store's website for the most accurate and current
 								information. Please note that games with ended sales may take
 								time to be removed from the API and may show up as 0% discounts.
+								Please take note before purchasing that some deals and games may
+								not be available in your region.
 							</Text>
 						</Group>
 					</Container>
