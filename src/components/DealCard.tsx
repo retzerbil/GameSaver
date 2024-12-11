@@ -1,7 +1,7 @@
 import { Anchor, Badge, Button, Card, Group, Image, Text } from "@mantine/core";
 import { IDealSearchResponse } from "../models/IDealSearchResponse";
 import { IStoreResponse } from "../models/IStoreResponse";
-import "../styles/dealcard.scss"
+import "../styles/dealcard.scss";
 
 interface IDealCardProps {
 	deal: IDealSearchResponse;
@@ -10,15 +10,24 @@ interface IDealCardProps {
 
 export const DealCard = ({ deal, store }: IDealCardProps) => {
 	return (
-		<Card shadow="sm" padding="lg" radius="md" withBorder w="300px" className="dealCard">
+		<Card
+			shadow="sm"
+			padding="lg"
+			radius="md"
+			withBorder
+			w="300px"
+			className="dealCard"
+		>
 			<Card.Section className="dealCardContent">
-				<Image
-					radius="md"
-					src={deal.thumb}
-					w="200px"
-					className="dealCardImage"
-					fallbackSrc="https://placehold.co/600x400?text={deal.title}"
-				/>
+				<section className="dealCardImageContainer">
+					<Image
+						radius="md"
+						src={deal.thumb}
+						w="200px"
+						className="dealCardImage"
+						fallbackSrc="https://placehold.co/600x400?text={deal.title}"
+					/>
+				</section>
 
 				<Group justify="space-between" mt="md" mb="xs">
 					<Text>{deal.title}</Text>
@@ -44,7 +53,14 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 					</Group>
 				)}
 
-				<Button color="orange" variant="filled" w="200px" mt="md" radius="md" className="dealCardButton">
+				<Button
+					color="orange"
+					variant="filled"
+					w="200px"
+					mt="md"
+					radius="md"
+					className="dealCardButton"
+				>
 					<Anchor
 						underline="never"
 						href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
