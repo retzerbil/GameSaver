@@ -12,7 +12,7 @@ import { DealCard } from "./DealCard";
 import { getDealsSearch } from "../Services/getDeals";
 import { IDealSearchResponse } from "../models/IDealSearchResponse";
 import { IStoreResponse } from "../models/IStoreResponse";
-import { getStores } from "../Services/getStores"; // Adjust the import path as needed
+import { getStores } from "../Services/getStores";
 
 export const GameSearch = () => {
 	const [query, setQuery] = useState("");
@@ -23,7 +23,7 @@ export const GameSearch = () => {
 	const [pageSize, setPageSize] = useState(10);
 	const [isLoading, setIsLoading] = useState(false);
 	const [totalResults, setTotalResults] = useState(0);
-	const [sortOption, setSortOption] = useState("alphabetical");
+	const [sortOption, setSortOption] = useState("highestDiscount");
 	const [stores, setStores] = useState<IStoreResponse[]>([]);
 
     const fetchDeals = async () => {
@@ -53,7 +53,7 @@ export const GameSearch = () => {
     };
 
     const handleSortChange = (value: string | null) => {
-        const newSortOption = value || "alphabetical";
+        const newSortOption = value || "highestDiscount";
         setSortOption(newSortOption);
         if (results) {
             sortResults(newSortOption, results);
