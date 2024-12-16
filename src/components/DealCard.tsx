@@ -2,6 +2,7 @@ import { Anchor, Badge, Button, Card, Group, Image, Text } from "@mantine/core";
 import { IDealSearchResponse } from "../models/IDealSearchResponse";
 import { IStoreResponse } from "../models/IStoreResponse";
 import "../styles/dealcard.scss";
+import { Link } from "react-router-dom";
 
 interface IDealCardProps {
 	deal: IDealSearchResponse;
@@ -30,7 +31,9 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 				</section>
 
 				<Group justify="space-between" mt="md" mb="xs">
+					<Link to={`/game-details/${encodeURIComponent(deal.title)}`}>View Details
 					<Text>{deal.title}</Text>
+					</Link>
 					<Badge color="green">{Math.round(+deal.savings)}%</Badge>
 				</Group>
 
