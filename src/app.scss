@@ -1,8 +1,19 @@
+@font-face {
+    font-family: 'Vendite Adoremus';
+    src: url(../src/assets/fonts/VeniteAdoremus-rgRBA.ttf)
+}
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
     margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: rgb(250, 253, 255) !important;
+    font-family: 'Vendite Adoremus' !important;
 }
 
 main {
