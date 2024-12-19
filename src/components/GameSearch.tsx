@@ -26,58 +26,58 @@ export const GameSearch = () => {
 	const [sortOption, setSortOption] = useState("highestDiscount");
 	const [stores, setStores] = useState<IStoreResponse[]>([]);
 
-    const fetchDeals = async () => {
-        if (!query) return;
+	const fetchDeals = async () => {
+		if (!query) return;
 
-        setIsLoading(true);
-        setError(null);
+		setIsLoading(true);
+		setError(null);
 
-        try {
-            const response = await getDealsSearch(query, pageSize, activePage);
-            console.log('response', response);
-            setResults(response.deals);
-            setTotalResults(response.totalResults);
-            sortResults(sortOption, response.deals);
-        } catch (err) {
-            setError("Failed to fetch games");
-        } finally {
-            setIsLoading(false);
-        }
-    };
+		try {
+			const response = await getDealsSearch(query, pageSize, activePage);
+			console.log("response", response);
+			setResults(response.deals);
+			setTotalResults(response.totalResults);
+			sortResults(sortOption, response.deals);
+		} catch (err) {
+			setError("Failed to fetch games");
+		} finally {
+			setIsLoading(false);
+		}
+	};
 
-    const handleSearch = (event: React.FormEvent) => {
-        event.preventDefault();
-        setActivePage(1);
-        setLastQuery(query);
-        fetchDeals();
-    };
+	const handleSearch = (event: React.FormEvent) => {
+		event.preventDefault();
+		setActivePage(1);
+		setLastQuery(query);
+		fetchDeals();
+	};
 
-    const handleSortChange = (value: string | null) => {
-        const newSortOption = value || "highestDiscount";
-        setSortOption(newSortOption);
-        if (results) {
-            sortResults(newSortOption, results);
-        }
-    };
+	const handleSortChange = (value: string | null) => {
+		const newSortOption = value || "highestDiscount";
+		setSortOption(newSortOption);
+		if (results) {
+			sortResults(newSortOption, results);
+		}
+	};
 
-    const sortResults = (option: string, deals: IDealSearchResponse[]) => {
-        let sortedResults = [...deals];
-        switch (option) {
-            case "alphabetical":
-                sortedResults.sort((a, b) => a.title.localeCompare(b.title));
-                break;
-            case "lowestPrice":
-                sortedResults.sort((a, b) => +a.salePrice - +b.salePrice);
-                break;
-            case "highestDiscount":
-                sortedResults.sort((a, b) => +b.savings - +a.savings);
-                break;
-            default:
-                break;
-        }
-        setResults(sortedResults);
-    };
-	
+	const sortResults = (option: string, deals: IDealSearchResponse[]) => {
+		let sortedResults = [...deals];
+		switch (option) {
+			case "alphabetical":
+				sortedResults.sort((a, b) => a.title.localeCompare(b.title));
+				break;
+			case "lowestPrice":
+				sortedResults.sort((a, b) => +a.salePrice - +b.salePrice);
+				break;
+			case "highestDiscount":
+				sortedResults.sort((a, b) => +b.savings - +a.savings);
+				break;
+			default:
+				break;
+		}
+		setResults(sortedResults);
+	};
+
 	const handlePageSizeChange = (size: string | null) => {
 		if (size) {
 			setPageSize(Number(size));
@@ -154,7 +154,7 @@ export const GameSearch = () => {
 				<Flex
 					mih={50}
 					gap="xl"
-					justify="flex-start"
+					justify="center"
 					align="center"
 					direction="row"
 					wrap="wrap"
@@ -169,13 +169,7 @@ export const GameSearch = () => {
 							(store) => store.storeID === String(deal.storeID)
 						);
 
-						return (
-							<DealCard
-								key={deal.dealID}
-								deal={deal}
-								store={store}
-							/>
-						);
+						return <DealCard key={deal.dealID} deal={deal} store={store} />;
 					})}
 				</Flex>
 

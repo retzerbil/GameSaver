@@ -31,9 +31,7 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 				</section>
 
 				<Group justify="space-between" mt="md" mb="xs">
-					<Link to={`/game-details/${encodeURIComponent(deal.title)}`}>View Details
 					<Text>{deal.title}</Text>
-					</Link>
 					<Badge color="green">{Math.round(+deal.savings)}%</Badge>
 				</Group>
 
