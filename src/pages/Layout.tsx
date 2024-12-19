@@ -6,10 +6,10 @@ export const Layout = () => {
 		<>
 			<body>
 				<header>
-					<h1>GameSaver</h1>
+					<h1 className="headerTitle">GameSaver</h1>
 
-					<nav>
-						<ul>
+					<nav className="navBar">
+						<ul >
 							<li>
 								<NavLink to={"/"}>Start</NavLink>
 							</li>

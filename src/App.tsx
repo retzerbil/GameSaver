@@ -1,6 +1,5 @@
 import { GameSaverMain } from './components/GameSaverMain'
-import '<div className="" />
-<app className="scss"></app>
+import './app.scss'
 function App() {
   return (
     <>
