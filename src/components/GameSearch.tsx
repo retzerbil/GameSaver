@@ -109,16 +109,18 @@ export const GameSearch = () => {
 	return (
 		<>
 			<form onSubmit={handleSearch}>
-				<TextInput
-					label="Search for a game"
-					description="Enter the name of the game you want to search for"
-					placeholder="Enter game name"
-					value={query}
-					onChange={(event) => setQuery(event.currentTarget.value)}
-				/>
-				<Button type="submit" variant="filled" color="orange">
-					Search!
-				</Button>
+				<Group justify="center">
+					<TextInput
+						label="Search for a game"
+						description="Enter the name of the game you want to search for"
+						placeholder="Enter game name"
+						value={query}
+						onChange={(event) => setQuery(event.currentTarget.value)}
+					/>
+					<Button type="submit" variant="filled" color="orange">
+						Search
+					</Button>
+				</Group>
 			</form>
 			<div style={{ position: "relative" }}>
 				<LoadingOverlay
