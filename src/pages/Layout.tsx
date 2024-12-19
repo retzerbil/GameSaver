@@ -11,7 +11,7 @@ export const Layout = () => {
 					<nav className="navBar">
 						<ul>
 							<li>
-								<NavLink to={"/"}>Start</NavLink>
+								<NavLink to={"/Home"}>Home</NavLink>
 							</li>
 							<li>
 								<NavLink to={"/Deals"}>Deals</NavLink>

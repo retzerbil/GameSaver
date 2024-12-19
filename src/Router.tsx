@@ -3,6 +3,7 @@ import { Layout } from "./pages/Layout";
 import { Deals } from "./pages/Deals";
 import { NotFound } from "./pages/NotFound";
 import { GameDetails } from "./components/GameDetails";
+import { Home } from "./pages/Home";
 
 export const Router = createBrowserRouter([
 	{
@@ -12,6 +13,10 @@ export const Router = createBrowserRouter([
 			{
 				path: "deals",
 				element: <Deals />,
+			},
+			{
+				path: "home",
+				element: <Home />,
 			},
 			{
 				path: "game-details/:title",
