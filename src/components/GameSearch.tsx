@@ -13,6 +13,7 @@ import { getDealsSearch } from "../Services/getDeals";
 import { IDealSearchResponse } from "../models/IDealSearchResponse";
 import { IStoreResponse } from "../models/IStoreResponse";
 import { getStores } from "../Services/getStores";
+import { IconSearch } from "@tabler/icons-react";
 
 export const GameSearch = () => {
 	const [query, setQuery] = useState("");
@@ -116,6 +117,7 @@ export const GameSearch = () => {
 						placeholder="Enter game name"
 						value={query}
 						onChange={(event) => setQuery(event.currentTarget.value)}
+						leftSection={<IconSearch />}
 					/>
 					<Button type="submit" variant="filled" color="orange">
 						Search
