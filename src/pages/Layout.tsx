@@ -4,12 +4,12 @@ import { NavLink, Outlet } from "react-router-dom";
 export const Layout = () => {
 	return (
 		<>
-			<body>
+			<section className="layoutBody">
 				<header>
 					<h1 className="headerTitle">GameSaver</h1>
 
 					<nav className="navBar">
-						<ul >
+						<ul>
 							<li>
 								<NavLink to={"/"}>Start</NavLink>
 							</li>
@@ -47,7 +47,7 @@ export const Layout = () => {
 						</Group>
 					</Container>
 				</footer>
-			</body>
+			</section>
 		</>
 	);
 };
