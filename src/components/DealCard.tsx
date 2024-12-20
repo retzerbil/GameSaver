@@ -2,8 +2,6 @@ import { Anchor, Badge, Button, Card, Group, Image, Text } from "@mantine/core";
 import { IDealSearchResponse } from "../models/IDealSearchResponse";
 import { IStoreResponse } from "../models/IStoreResponse";
 import "../styles/dealcard.scss";
-import { Link } from "react-router-dom";
-
 interface IDealCardProps {
 	deal: IDealSearchResponse;
 	store?: IStoreResponse;
@@ -30,12 +28,11 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 					/>
 				</section>
 
-				<Group justify="space-between" mt="md" mb="xs">
-					<Text>{deal.title}</Text>
-					<Badge color="green">{Math.round(+deal.savings)}%</Badge>
-				</Group>
+				<Text className="dealCardTitle" pb="md">{deal.title}</Text>
 
-				<Group justify="space-between">
+				<Badge color="green" className="dealCardPercentage" ml="80%">{Math.round(+deal.savings)}%</Badge>
+
+				<Group justify="space-between" pb="md">
 					<Text td="line-through">${deal.normalPrice}</Text>
 					<Text>${deal.salePrice}</Text>
 				</Group>
@@ -53,24 +50,23 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 						)}
 					</Group>
 				)}
-
-				<Button
-					color="orange"
-					variant="filled"
-					w="200px"
-					mt="md"
-					radius="md"
-					className="dealCardButton"
-				>
-					<Anchor
-						underline="never"
-						href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
-						target="_blank"
-					>
-						Go to store!
-					</Anchor>
-				</Button>
 			</Card.Section>
+			<Button
+				color="orange"
+				variant="filled"
+				w="200px"
+				mt="md"
+				radius="md"
+				className="dealCardButton"
+			>
+				<Anchor
+					underline="never"
+					href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
+					target="_blank"
+				>
+					Go to store!
+				</Anchor>
+			</Button>
 		</Card>
 	);
 };
