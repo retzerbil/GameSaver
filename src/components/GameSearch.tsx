@@ -94,18 +94,31 @@ export const GameSearch = () => {
 
 	useEffect(() => {
 		const fetchStores = async () => {
-			const storedStores = localStorage.getItem("stores");
-			if (storedStores) {
-				setStores(JSON.parse(storedStores));
-			} else {
-				const fetchedStores = await getStores();
-				localStorage.setItem("stores", JSON.stringify(fetchedStores));
-				setStores(fetchedStores);
+		  const storedStores = localStorage.getItem("stores");
+		  const storedTimestamp = localStorage.getItem("storesTimestamp");
+		  const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
+	  
+		  if (storedStores && storedTimestamp) {
+			const currentTime = new Date().getTime();
+			const storedTime = new Date(parseInt(storedTimestamp, 10)).getTime();
+	  
+			if (currentTime - storedTime < oneDay) {
+			  setStores(JSON.parse(storedStores));
+			  return;
 			}
+		  }
+		  
+		  //if store data is older than one day, fetch new data.
+		  //stores aren't updated frequently so this should be fine.
+		  const fetchedStores = await getStores();
+		  localStorage.setItem("stores", JSON.stringify(fetchedStores));
+		  localStorage.setItem("storesTimestamp", new Date().getTime().toString());
+		  setStores(fetchedStores);
 		};
-
+	  
 		fetchStores();
-	}, []);
+	  }, []);
+	  
 
 	return (
 		<>
