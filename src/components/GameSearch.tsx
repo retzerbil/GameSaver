@@ -109,22 +109,23 @@ export const GameSearch = () => {
 
 	return (
 		<>
-			<form onSubmit={handleSearch}>
-				<Group justify="center">
-					<TextInput
-						label="Search for a game"
-						description="Enter the name of the game you want to search for"
-						placeholder="Enter game name"
-						value={query}
-						onChange={(event) => setQuery(event.currentTarget.value)}
-						leftSection={<IconSearch />}
-					/>
-					<Button type="submit" variant="filled" color="orange">
-						Search
-					</Button>
-				</Group>
-			</form>
-			<div style={{ position: "relative" }}>
+			<section style={{ position: "relative" }}>
+				<form onSubmit={handleSearch}>
+					<Group justify="center">
+						<TextInput
+							label="Search for a game"
+							description="Enter the name of the game you want to search for"
+							placeholder="Enter game name"
+							value={query}
+							onChange={(event) => setQuery(event.currentTarget.value)}
+							leftSection={<IconSearch />}
+						/>
+						<Button type="submit" variant="filled" color="orange">
+							Search
+						</Button>
+					</Group>
+				</form>
+
 				<LoadingOverlay
 					visible={isLoading}
 					zIndex={1000}
@@ -143,6 +144,7 @@ export const GameSearch = () => {
 				{results && results.length > 0 && (
 					<Group>
 						<Select
+							className="sortSelect"
 							label="Sort by"
 							placeholder="Choose sorting option"
 							data={[
@@ -180,12 +182,14 @@ export const GameSearch = () => {
 				{results && results.length > 0 && (
 					<Group>
 						<Pagination
+							className="pagination"
 							value={activePage}
 							onChange={setActivePage}
 							total={Math.ceil(totalResults / pageSize)}
 							mt="lg"
 						/>
 						<Select
+							className="pageSizeSelect"
 							label="Results per page"
 							placeholder="Choose page size"
 							data={[
@@ -198,7 +202,7 @@ export const GameSearch = () => {
 						/>
 					</Group>
 				)}
-			</div>
+			</section>
 		</>
 	);
 };

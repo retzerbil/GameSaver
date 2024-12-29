@@ -1,8 +1,3 @@
-@font-face {
-    font-family: "Vendite Adoremus";
-    src: url(../src/assets/fonts/VeniteAdoremus-rgRBA.ttf);
-}
-
 .layoutBody {
     display: flex;
     flex-direction: column;
@@ -15,7 +10,34 @@
     padding: 0;
     overflow-x: hidden;
     color: rgb(250, 253, 255) !important;
-    font-family: "Vendite Adoremus" !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Corben', Georgia, Times, serif !important;
+}
+p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif !important;
+}
+
+.sortSelect {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    width: 100%;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pageSizeSelect {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    width: 100%;
 }
 
 main {
