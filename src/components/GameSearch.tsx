@@ -93,32 +93,33 @@ export const GameSearch = () => {
 	}, [activePage, pageSize]);
 
 	useEffect(() => {
+		//Stores are needed to fetch store data for each deal.
+		//This is done once and stored in local storage to save on API calls that would otherwise need to be fetched from each deal.
+		//If store data is older than one day, fetch new data.
+		//Stores aren't updated frequently so this should be fine.
 		const fetchStores = async () => {
-		  const storedStores = localStorage.getItem("stores");
-		  const storedTimestamp = localStorage.getItem("storesTimestamp");
-		  const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
-	  
-		  if (storedStores && storedTimestamp) {
-			const currentTime = new Date().getTime();
-			const storedTime = new Date(parseInt(storedTimestamp, 10)).getTime();
-	  
-			if (currentTime - storedTime < oneDay) {
-			  setStores(JSON.parse(storedStores));
-			  return;
+			const storedStores = localStorage.getItem("stores");
+			const storedTimestamp = localStorage.getItem("storesTimestamp");
+			const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
+
+			if (storedStores && storedTimestamp) {
+				const currentTime = new Date().getTime();
+				const storedTime = new Date(parseInt(storedTimestamp, 10)).getTime();
+
+				if (currentTime - storedTime < oneDay) {
+					setStores(JSON.parse(storedStores));
+					return;
+				}
 			}
-		  }
-		  
-		  //if store data is older than one day, fetch new data.
-		  //stores aren't updated frequently so this should be fine.
-		  const fetchedStores = await getStores();
-		  localStorage.setItem("stores", JSON.stringify(fetchedStores));
-		  localStorage.setItem("storesTimestamp", new Date().getTime().toString());
-		  setStores(fetchedStores);
+
+			const fetchedStores = await getStores();
+			localStorage.setItem("stores", JSON.stringify(fetchedStores));
+			localStorage.setItem("storesTimestamp", new Date().getTime().toString());
+			setStores(fetchedStores);
 		};
-	  
+
 		fetchStores();
-	  }, []);
-	  
+	}, []);
 
 	return (
 		<>
