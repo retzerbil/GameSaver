@@ -4,7 +4,6 @@ import {
 	Pagination,
 	Select,
 	TextInput,
-	Flex,
 	LoadingOverlay,
 	SimpleGrid,
 } from "@mantine/core";
