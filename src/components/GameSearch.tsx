@@ -6,6 +6,7 @@ import {
 	TextInput,
 	Flex,
 	LoadingOverlay,
+	SimpleGrid,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { DealCard } from "./DealCard";
@@ -96,7 +97,7 @@ export const GameSearch = () => {
 		//Stores are needed to fetch store data for each deal.
 		//This is done once and stored in local storage to save on API calls that would otherwise need to be fetched from each deal.
 		//If store data is older than one day, fetch new data.
-		//Stores aren't updated frequently so this should be fine.
+		//Stores aren't updated frequently so this should be fine. And if its missing a store the user can still see the deal. It just won't have store data i.e logo and name.
 		const fetchStores = async () => {
 			const storedStores = localStorage.getItem("stores");
 			const storedTimestamp = localStorage.getItem("storesTimestamp");
@@ -134,7 +135,12 @@ export const GameSearch = () => {
 							onChange={(event) => setQuery(event.currentTarget.value)}
 							leftSection={<IconSearch />}
 						/>
-						<Button type="submit" variant="filled" color="orange" className="searchButton">
+						<Button
+							type="submit"
+							variant="filled"
+							color="orange"
+							className="searchButton"
+						>
 							Search
 						</Button>
 					</Group>
@@ -171,15 +177,7 @@ export const GameSearch = () => {
 						/>
 					</Group>
 				)}
-				<Flex
-					mih={50}
-					gap="xl"
-					justify="center"
-					align="center"
-					direction="row"
-					wrap="wrap"
-					mt="lg"
-				>
+				<SimpleGrid cols={{ xs: 1, sm: 2, md: 3, lg: 5 }}>
 					{results?.map((deal) => {
 						console.log(
 							"Matching store:",
@@ -191,7 +189,7 @@ export const GameSearch = () => {
 
 						return <DealCard key={deal.dealID} deal={deal} store={store} />;
 					})}
-				</Flex>
+				</SimpleGrid>
 
 				{results && results.length > 0 && (
 					<Group>

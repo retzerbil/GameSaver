@@ -1,5 +1,5 @@
 import { Container, Group, Image, Text } from "@mantine/core";
-import { IconBasketDiscount, IconHome, IconInfoSquare, IconInfoSquareRounded } from "@tabler/icons-react";
+import { IconBasketDiscount, IconHome, IconInfoSquareRounded } from "@tabler/icons-react";
 import { NavLink, Outlet } from "react-router-dom";
 import "../app.scss"
 
@@ -10,8 +10,10 @@ export const Layout = () => {
 				<header>
 					<nav className="navBar">
 						<NavLink to={"/Home"}>
-						<Image src="src\assets\images\gameSaverLogo.png" h={150} />
+						<Group>
+						<Image src="src\assets\images\gameSaverLogo.png" h={75} w={75} />
 						<h1 className="headerTitle">GameSaver</h1>
+						</Group>
 						</NavLink>
 						<ul>
 							<li>
