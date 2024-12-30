@@ -1,20 +1,32 @@
-import { Container, Group, Text } from "@mantine/core";
+import { Container, Group, Image, Text } from "@mantine/core";
+import { IconBasketDiscount, IconHome } from "@tabler/icons-react";
 import { NavLink, Outlet } from "react-router-dom";
 
 export const Layout = () => {
 	return (
 		<>
 			<section className="layoutBody">
-				<header>
+			<header>
+					<Image src="src\assets\images\gameSaverLogo.png" h={150} />
 					<h1 className="headerTitle">GameSaver</h1>
 
 					<nav className="navBar">
 						<ul>
 							<li>
-								<NavLink to={"/Home"}>Home</NavLink>
+								<NavLink to={"/Home"}>
+									<Group>
+										<IconHome />
+										Home
+									</Group>
+								</NavLink>
 							</li>
 							<li>
-								<NavLink to={"/Deals"}>Deals</NavLink>
+								<NavLink to={"/Deals"}>
+									<Group>
+										<IconBasketDiscount />
+										Deals
+									</Group>
+								</NavLink>
 							</li>
 						</ul>
 					</nav>
