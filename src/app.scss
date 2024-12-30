@@ -19,6 +19,12 @@ p, div {
     font-family: 'Nobile', Helvetica, Arial, sans-serif !important;
 }
 
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
 .sortSelect {
     display: flex;
     justify-content: right;
@@ -70,8 +76,4 @@ main {
         cursor: pointer;
     }
 
-    a {
-        color: white;
-        text-decoration: none;
-    }
 }
