@@ -1,20 +1,20 @@
 import { Container, Group, Image, Text } from "@mantine/core";
 import { IconBasketDiscount, IconHome } from "@tabler/icons-react";
 import { NavLink, Outlet } from "react-router-dom";
+import "../app.scss"
 
 export const Layout = () => {
 	return (
 		<>
 			<section className="layoutBody">
-			<header>
-					<Image src="src\assets\images\gameSaverLogo.png" h={150} />
-					<h1 className="headerTitle">GameSaver</h1>
-
+				<header>
 					<nav className="navBar">
+						<Image src="src\assets\images\gameSaverLogo.png" h={150} />
+						<h1 className="headerTitle">GameSaver</h1>
 						<ul>
 							<li>
 								<NavLink to={"/Home"}>
-									<Group>
+									<Group className="navLink">
 										<IconHome />
 										Home
 									</Group>
@@ -22,7 +22,7 @@ export const Layout = () => {
 							</li>
 							<li>
 								<NavLink to={"/Deals"}>
-									<Group>
+									<Group className="">
 										<IconBasketDiscount />
 										Deals
 									</Group>

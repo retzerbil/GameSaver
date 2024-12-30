@@ -125,7 +125,7 @@ export const GameSearch = () => {
 		<>
 			<section style={{ position: "relative" }}>
 				<form onSubmit={handleSearch}>
-					<Group justify="center">
+					<Group className="searchGroup" justify="center">
 						<TextInput
 							label="Search for a game"
 							description="Enter the name of the game you want to search for"
@@ -134,7 +134,7 @@ export const GameSearch = () => {
 							onChange={(event) => setQuery(event.currentTarget.value)}
 							leftSection={<IconSearch />}
 						/>
-						<Button type="submit" variant="filled" color="orange">
+						<Button type="submit" variant="filled" color="orange" className="searchButton">
 							Search
 						</Button>
 					</Group>
