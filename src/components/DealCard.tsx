@@ -60,6 +60,7 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 				className="dealCardButton"
 			>
 				<Anchor
+					className="storeButton"
 					underline="never"
 					href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
 					target="_blank"

@@ -146,6 +146,7 @@ export const GameSearch = () => {
 				</form>
 
 				<LoadingOverlay
+				className="loadingOverlay"
 					visible={isLoading}
 					zIndex={1000}
 					overlayProps={{ radius: "sm", blur: 2 }}
@@ -154,7 +155,7 @@ export const GameSearch = () => {
 				{error && <p style={{ color: "red" }}>{error}</p>}
 
 				{!isLoading && results && results.length === 0 && (
-					<p>
+					<p className="noResults">
 						No games found for <em>"{lastQuery}"</em>. The game may not
 						currently be on sale, or there may be an error in the search
 						spelling. Please try a different search query.
