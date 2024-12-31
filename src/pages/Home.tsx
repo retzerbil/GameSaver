@@ -1,9 +1,10 @@
-import { Text } from "@mantine/core";
+import { Button, Text } from "@mantine/core";
+import { NavLink } from "react-router-dom";
 
 export const Home = () => {
 	return (
 		<>
-			<div>
+			<section className="homeBody">
 				<h1>Welcome to GameSaver</h1>
 				<Text>
 					GameSaver is a website that allows you to search for the best deals on
@@ -13,7 +14,11 @@ export const Home = () => {
 					deals. GameSaver is a great way to save money on video games and find
 					the best deals available online.
 				</Text>
-			</div>
+
+				<Button color="orange" variant="filled" mt="md" radius="md" size="xl">
+					<NavLink to={"/Deals"}>FIND ME DEALS!</NavLink>
+				</Button>
+			</section>
 		</>
 	);
 };

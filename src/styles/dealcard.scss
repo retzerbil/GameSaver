@@ -24,6 +24,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 1rem;
 }
 
 .dealCardImageContainer {
@@ -74,7 +75,8 @@
   margin-bottom: 100px;
 }
 
-.dealCardButton { /* Push the button to the bottom */
+.dealCardButton {
+  /* Push the button to the bottom */
   width: 100%;
   text-align: center;
   color: var(--button-text-color) !important;

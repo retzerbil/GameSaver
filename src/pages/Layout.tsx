@@ -1,7 +1,11 @@
 import { Container, Group, Image, Text } from "@mantine/core";
-import { IconBasketDiscount, IconHome, IconInfoSquareRounded } from "@tabler/icons-react";
+import {
+	IconBasketDiscount,
+	IconHome,
+	IconInfoSquareRounded,
+} from "@tabler/icons-react";
 import { NavLink, Outlet } from "react-router-dom";
-import "../app.scss"
+import "../app.scss";
 
 export const Layout = () => {
 	return (
@@ -9,38 +13,45 @@ export const Layout = () => {
 			<section className="layoutBody">
 				<header>
 					<nav className="navBar">
-						<NavLink to={"/Home"}>
 						<Group>
-						<Image src="src\assets\images\gameSaverLogo.png" h={75} w={75} alt="GameSaver logotype" />
-						<h1 className="headerTitle">GameSaver</h1>
+							<NavLink to={"/Home"}>
+								<Group>
+									<Image
+										src="src\assets\images\gameSaverLogo.png"
+										h={75}
+										w={75}
+										alt="GameSaver logotype"
+									/>
+									<h1 className="headerTitle">GameSaver</h1>
+								</Group>
+							</NavLink>
+							<ul className="navLinks">
+								<li>
+									<NavLink to={"/Home"}>
+										<Group className="navLink">
+											<IconHome />
+											Home
+										</Group>
+									</NavLink>
+								</li>
+								<li>
+									<NavLink to={"/Deals"}>
+										<Group className="">
+											<IconBasketDiscount />
+											Deals
+										</Group>
+									</NavLink>
+								</li>
+								<li>
+									<NavLink to={"/About"}>
+										<Group className="">
+											<IconInfoSquareRounded />
+											About
+										</Group>
+									</NavLink>
+								</li>
+							</ul>
 						</Group>
-						</NavLink>
-						<ul>
-							<li>
-								<NavLink to={"/Home"}>
-									<Group className="navLink">
-										<IconHome />
-										Home
-									</Group>
-								</NavLink>
-							</li>
-							<li>
-								<NavLink to={"/Deals"}>
-									<Group className="">
-										<IconBasketDiscount />
-										Deals
-									</Group>
-								</NavLink>
-							</li>
-							<li>
-								<NavLink to={"/About"}>
-								<Group className="">
-									<IconInfoSquareRounded />
-									About
-									</Group>
-								</NavLink>
-							</li>
-						</ul>
 					</nav>
 				</header>
 				<main>

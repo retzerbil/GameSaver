@@ -173,6 +173,7 @@ export const GameSearch = () => {
 							]}
 							value={sortOption}
 							onChange={handleSortChange}
+							pb={10}
 						/>
 					</Group>
 				)}
@@ -192,13 +193,6 @@ export const GameSearch = () => {
 
 				{results && results.length > 0 && (
 					<Group>
-						<Pagination
-							className="pagination"
-							value={activePage}
-							onChange={setActivePage}
-							total={Math.ceil(totalResults / pageSize)}
-							mt="lg"
-						/>
 						<Select
 							className="pageSizeSelect"
 							placeholder="Choose page size"
@@ -209,6 +203,14 @@ export const GameSearch = () => {
 								{ value: "50", label: "50" },
 							]}
 							onChange={handlePageSizeChange}
+							pt={10}
+						/>
+						<Pagination
+							className="pagination"
+							value={activePage}
+							onChange={setActivePage}
+							total={Math.ceil(totalResults / pageSize)}
+							mt="lg"
 						/>
 					</Group>
 				)}

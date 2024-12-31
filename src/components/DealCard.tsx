@@ -30,7 +30,7 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 
 				<Text className="dealCardTitle" pb="md">{deal.title}</Text>
 
-				<Badge color="green" className="dealCardPercentage" ml="80%">{Math.round(+deal.savings)}%</Badge>
+				<Badge color="green" className="dealCardPercentage" ml="80%"><Text fw={500}>{Math.round(+deal.savings)}%</Text></Badge>
 
 				<Group justify="space-between" pb="md">
 					<Text td="line-through">${deal.normalPrice}</Text>
