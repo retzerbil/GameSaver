@@ -165,7 +165,6 @@ export const GameSearch = () => {
 					<Group>
 						<Select
 							className="sortSelect"
-							label="Sort by"
 							placeholder="Choose sorting option"
 							data={[
 								{ value: "alphabetical", label: "Alphabetical" },
@@ -202,7 +201,6 @@ export const GameSearch = () => {
 						/>
 						<Select
 							className="pageSizeSelect"
-							label="Results per page"
 							placeholder="Choose page size"
 							data={[
 								{ value: "5", label: "5" },
