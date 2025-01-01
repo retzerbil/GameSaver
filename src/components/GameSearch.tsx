@@ -27,24 +27,49 @@ export const GameSearch = () => {
 	const [sortOption, setSortOption] = useState("highestDiscount");
 	const [stores, setStores] = useState<IStoreResponse[]>([]);
 
-	const fetchDeals = async () => {
-		if (!query) return;
 
-		setIsLoading(true);
-		setError(null);
+	useEffect(() => {
+		const savedQuery = sessionStorage.getItem("lastQuery");
+		const savedResults = sessionStorage.getItem("lastResults");
 
-		try {
-			const response = await getDealsSearch(query, pageSize, activePage);
-			console.log("response", response);
-			setResults(response.deals);
-			setTotalResults(response.totalResults);
-			sortResults(sortOption, response.deals);
-		} catch (err) {
-			setError("Failed to fetch games");
-		} finally {
-			setIsLoading(false);
+		if (savedQuery) {
+			setQuery(savedQuery);
+			setLastQuery(savedQuery);
 		}
-	};
+
+		if (savedResults) {
+			const parsedResults = JSON.parse(savedResults);
+			setResults(parsedResults);
+			setTotalResults(parsedResults.length);
+		}
+	}, []);
+
+	useEffect(() => {
+		if (lastQuery) {
+		  fetchDeals();
+		}
+	  }, [lastQuery]);
+
+ const fetchDeals = async () => {
+    if (!query) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await getDealsSearch(query, pageSize, activePage);
+      console.log("response", response);
+      setResults(response.deals);
+      setTotalResults(response.totalResults);
+      sortResults(sortOption, response.deals);
+      sessionStorage.setItem('lastResults', JSON.stringify(response.deals));
+      sessionStorage.setItem('lastQuery', query);
+    } catch (err) {
+      setError("Failed to fetch games");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
 	const handleSearch = (event: React.FormEvent) => {
 		event.preventDefault();
@@ -125,14 +150,14 @@ export const GameSearch = () => {
 		<>
 			<section style={{ position: "relative" }}>
 				<form onSubmit={handleSearch}>
-					<Group className="searchGroup" justify="center">
+					<Group className="searchGroup" justify="center" p={10}>
 						<TextInput
 							label="Search for a game"
 							description="Enter the name of the game you want to search for"
 							placeholder="Enter game name"
 							value={query}
 							onChange={(event) => setQuery(event.currentTarget.value)}
-							leftSection={<IconSearch />}
+							leftSection={<IconSearch color="black" />}
 						/>
 						<Button
 							type="submit"
@@ -149,7 +174,7 @@ export const GameSearch = () => {
 				className="loadingOverlay"
 					visible={isLoading}
 					zIndex={1000}
-					overlayProps={{ radius: "sm", blur: 2 }}
+					overlayProps={{ radius: "lg", blur: 2 }}
 				/>
 
 				{error && <p style={{ color: "red" }}>{error}</p>}
@@ -164,6 +189,7 @@ export const GameSearch = () => {
 				{results && results.length > 0 && (
 					<Group>
 						<Select
+							withCheckIcon={false}
 							className="sortSelect"
 							placeholder="Choose sorting option"
 							data={[
@@ -177,7 +203,11 @@ export const GameSearch = () => {
 						/>
 					</Group>
 				)}
-				<SimpleGrid cols={{ xs: 1, sm: 2, md: 3, lg: 5 }}>
+				<SimpleGrid cols={{ xs: 1, sm: 2, md: 3, lg: 5 }}
+				  style={{
+					justifyItems: 'center',
+					alignItems: 'center',
+				  }}>
 					{results?.map((deal) => {
 						console.log(
 							"Matching store:",
@@ -196,6 +226,7 @@ export const GameSearch = () => {
 						<Select
 							className="pageSizeSelect"
 							placeholder="Choose page size"
+							id="pageSizeSelect"
 							data={[
 								{ value: "5", label: "5" },
 								{ value: "10", label: "10" },
