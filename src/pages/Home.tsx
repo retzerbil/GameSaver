@@ -6,7 +6,7 @@ export const Home = () => {
 		<>
 			<section className="homeBody">
 				<h1>Welcome to GameSaver</h1>
-				<Text>
+				<Text p={10}>
 					GameSaver is a website that allows you to search for the best deals on
 					video games. You can search for games by title, and GameSaver will
 					show you the best deals available from a variety of online stores. You

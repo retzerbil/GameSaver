@@ -58,11 +58,7 @@ export const Layout = () => {
 					<Outlet />
 				</main>
 				<footer
-					style={{
-						marginTop: "1rem",
-						padding: "2rem 0",
-						backgroundColor: "#f8f8f8",
-					}}
+					className="footer"
 				>
 					<Container>
 						<Group justify="space-between">
