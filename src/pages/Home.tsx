@@ -15,10 +15,10 @@ export const Home = () => {
 						searches for deals. GameSaver is a great way to save money on video
 						games and find the best deals available online.
 					</Text>
-
+					<NavLink to={"/Deals"}>
 					<Button color="orange" variant="filled" mt="md" radius="md" size="xl">
-						<NavLink to={"/Deals"}>FIND ME DEALS!</NavLink>
-					</Button>
+						FIND ME DEALS!
+					</Button></NavLink>
 				</section>
 			</Container>
 		</>

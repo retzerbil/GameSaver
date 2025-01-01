@@ -96,6 +96,9 @@ main {
 
 .searchButton {
     margin-top: auto; /* Push the button to the bottom */
+    span{
+        color: rgb(250, 250, 242) !important;
+    }
 }
 
 .footer {

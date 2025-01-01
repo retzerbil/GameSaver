@@ -7,7 +7,6 @@
 }
 
 .dealCard {
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -83,6 +82,9 @@
 
   a {
     color: inherit;
+  }
+  span {
+    color: rgb(250, 250, 242) !important;
   }
 }
 

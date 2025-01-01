@@ -28,9 +28,13 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 					/>
 				</section>
 
-				<Text className="dealCardTitle" pb="md">{deal.title}</Text>
+				<Text className="dealCardTitle" pb="md">
+					{deal.title}
+				</Text>
 
-				<Badge color="green" className="dealCardPercentage" ml="80%"><Text fw={500}>{Math.round(+deal.savings)}%</Text></Badge>
+				<Badge color="green" className="dealCardPercentage" ml="80%">
+					<Text fw={500}>{Math.round(+deal.savings)}%</Text>
+				</Badge>
 
 				<Group justify="space-between" pb="md">
 					<Text td="line-through">${deal.normalPrice}</Text>
@@ -51,23 +55,23 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 					</Group>
 				)}
 			</Card.Section>
-			<Button
-				color="orange"
-				variant="filled"
-				w="200px"
-				mt="md"
-				radius="md"
-				className="dealCardButton"
+			<Anchor
+				className="storeButton"
+				underline="never"
+				href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
+				target="_blank"
 			>
-				<Anchor
-					className="storeButton"
-					underline="never"
-					href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
-					target="_blank"
+				<Button
+					color="orange"
+					variant="filled"
+					w="200px"
+					mt="md"
+					radius="md"
+					className="dealCardButton"
 				>
 					Go to store!
-				</Anchor>
-			</Button>
+				</Button>
+			</Anchor>
 		</Card>
 	);
 };

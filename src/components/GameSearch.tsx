@@ -169,6 +169,7 @@ export const GameSearch = () => {
 							variant="filled"
 							color="orange"
 							className="searchButton"
+							
 						>
 							Search
 						</Button>
@@ -215,10 +216,6 @@ export const GameSearch = () => {
 					alignItems: 'center',
 				  }}>
 					{results?.map((deal) => {
-						console.log(
-							"Matching store:",
-							stores?.find((store) => store.storeID === String(deal.storeID))
-						);
 						const store = stores?.find(
 							(store) => store.storeID === String(deal.storeID)
 						);
