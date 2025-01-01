@@ -4,6 +4,8 @@ This is a project for finding game deals and watching historical price for games
 
 [Link to logbook](https://github.com/Medieinstitutet/fed23s-exjobb-loggbok-retzerbil)
 
+
+## About
 My webapp allows the user to search for a game and find it’s current cheapest discounted price on web stores. They can then sort the games on alphabetical order, cheapest price and highest discount.
 
 This allows gamers who want to save money or don’t have much money to spend on games to enjoy the games they want to play, no matter their financial situation. Keeping track of sales independent on a game platform can be hard since they would have to sign up to multiple services and keep track of multiple wishlist on these different storefronts. 
@@ -22,5 +24,7 @@ I was inspired by the Reddit page r/gamedeals since it is an easy way to keep tr
 
 The app uses [CheapShark API](https://apidocs.cheapshark.com/) to fetch deals on games, [Mantine UI](https://mantine.dev/overview/) library for components and [Tabler Icons](https://tabler.io/docs/icons/react) for icons.
 
+
+## Thoughts and reflections
 In this project, I learned to understand and apply an API and its limitations to my work, often encountering situations where the API behaved in unexpected ways, requiring creative workarounds to optimize for efficiency, reduce the number of API calls, and ensure the implementation functioned as intended.
 Additionally, I gained experience working with component libraries and discovered how efficient they are for building mobile-friendly websites, streamlining development while maintaining responsive and user-friendly designs.
