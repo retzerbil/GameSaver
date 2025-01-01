@@ -1,5 +1,5 @@
 # GameSaver!
-![Image of gamesaver site] (https://gyazo.com/f4332678021b3c62665e3a0e1420b5df)
+![Image of gamesaver site](/src/assets/images/example.png)
 This is a project for finding game deals and watching historical price for games and deals. 
 
 [Link to logbook](https://github.com/Medieinstitutet/fed23s-exjobb-loggbok-retzerbil)
@@ -13,6 +13,7 @@ My target audience are gamers who like to save money on games so they can buy mo
 The goal is to have a webapp that allows the user to find discounts for their favorite games.
 
 The product will be used to find games at their current cheapest price, and if it isn't on discount right now, ~~they can sign up to get an email notification when it comes on sale.~~ (The email sendout in the api work in a way where the users can only subscribe to a game that is already in the API, defeating the purpose for email sendouts.)
+
 I wanted to have a detailed view for the games, such as a summary or review scores from Metacritic or a similar rating site, but the API doesn't supply this information and the Metacritic API was either expensive, and the free alternatives that used web-scraping weren't Typescript-friendly or were massively out of date and or of poor quality.
 
 The app has Cypress E2E tests to make sure the site flow works as intended.
