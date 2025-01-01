@@ -16,9 +16,17 @@ export const Home = () => {
 						games and find the best deals available online.
 					</Text>
 					<NavLink to={"/Deals"}>
-					<Button color="orange" variant="filled" mt="md" radius="md" size="xl">
-						FIND ME DEALS!
-					</Button></NavLink>
+						<Button
+							color="orange"
+							variant="filled"
+							mt="md"
+							radius="md"
+							size="xl"
+							className="homeDealButton"
+						>
+							FIND ME DEALS!
+						</Button>
+					</NavLink>
 				</section>
 			</Container>
 		</>
