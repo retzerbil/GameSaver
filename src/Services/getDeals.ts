@@ -20,7 +20,7 @@ export const getDealsSearch = async (
     // Calculate total results
     const totalResults = allDeals.length;
 
-    // Paginate the results locally
+    // Paginate the results locally to save on api calls
     const startIndex = (pageNumber - 1) * pageSize;
     const paginatedDeals = allDeals.slice(startIndex, startIndex + pageSize);
 

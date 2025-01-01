@@ -62,6 +62,11 @@ export const GameSearch = () => {
       setResults(response.deals);
       setTotalResults(response.totalResults);
       sortResults(sortOption, response.deals);
+
+	  // Save the last query and results to session storage to persist data on page refresh or when navigating back to the page.
+	  // This is done to avoid making the same API call again when the user navigates back to the page.
+	  // The data is cleared when the user makes a new search.
+	  // Sessionstorage is used instead of localstorage so the data is cleared when the tab is closed.
       sessionStorage.setItem('lastResults', JSON.stringify(response.deals));
       sessionStorage.setItem('lastQuery', query);
     } catch (err) {
@@ -118,10 +123,10 @@ export const GameSearch = () => {
 	}, [activePage, pageSize]);
 
 	useEffect(() => {
-		//Stores are needed to fetch store data for each deal.
-		//This is done once and stored in local storage to save on API calls that would otherwise need to be fetched from each deal.
-		//If store data is older than one day, fetch new data.
-		//Stores aren't updated frequently so this should be fine. And if its missing a store the user can still see the deal. It just won't have store data i.e logo and name.
+		// Stores are needed to fetch store data for each deal.
+		// This is done once and stored in local storage to save on API calls that would otherwise need to be fetched from each deal.
+		// If store data is older than one day, fetch new data.
+		// Stores aren't updated frequently so this should be fine. And if its missing a store the user can still see the deal. It just won't have store data i.e logo and name.
 		const fetchStores = async () => {
 			const storedStores = localStorage.getItem("stores");
 			const storedTimestamp = localStorage.getItem("storesTimestamp");
@@ -203,6 +208,7 @@ export const GameSearch = () => {
 						/>
 					</Group>
 				)}
+				{/* SimpleGrid is used to display the deals in a grid layout. The number of columns changes based on the screen size. */}
 				<SimpleGrid cols={{ xs: 1, sm: 2, md: 3, lg: 5 }}
 				  style={{
 					justifyItems: 'center',

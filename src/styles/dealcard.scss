@@ -7,16 +7,16 @@
 }
 
 .dealCard {
-  max-width: 300px; /* Make the card smaller */
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 400px; /* Set a fixed height for the card */
+  height: 450px;
   background-color: var(--card-bg-color) !important;
   color: var(--card-text-color) !important;
   border: 1px solid var(--card-border-color) !important;
-  padding: 10px; /* Add padding to ensure content fits within the card */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .dealCardContent {
@@ -76,7 +76,6 @@
 }
 
 .dealCardButton {
-  /* Push the button to the bottom */
   width: 100%;
   text-align: center;
   color: var(--button-text-color) !important;
