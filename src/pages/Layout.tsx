@@ -17,7 +17,7 @@ export const Layout = () => {
 							<NavLink to={"/Home"}>
 								<Group>
 									<Image
-										src="src\assets\images\gameSaverLogo.png"
+										src="\src\assets\images\gameSaverLogo.png"
 										h={75}
 										w={75}
 										alt="GameSaver logotype"
