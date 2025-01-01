@@ -6,6 +6,7 @@ import {
 } from "@tabler/icons-react";
 import { NavLink, Outlet } from "react-router-dom";
 import "../app.scss";
+import Logo from "../assets/images/gameSaverLogo.png"
 
 export const Layout = () => {
 	return (
@@ -17,7 +18,7 @@ export const Layout = () => {
 							<NavLink to={"/Home"}>
 								<Group>
 									<Image
-										src="\src\assets\images\gameSaverLogo.png"
+										src={Logo}
 										h={75}
 										w={75}
 										alt="GameSaver logotype"
