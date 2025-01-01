@@ -38,11 +38,19 @@ span {
     color: rgb(24, 24, 23) !important;
 }
 
+.sortGroup{
+    padding: 10px;
+}
+
 .sortSelect {
     display: flex;
     justify-content: right;
     align-items: right;
     width: 100%;
+}
+
+.paginationGroup{
+    padding: 10px;
 }
 
 .pagination {

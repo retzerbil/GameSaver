@@ -192,7 +192,7 @@ export const GameSearch = () => {
 					</p>
 				)}
 				{results && results.length > 0 && (
-					<Group>
+					<Group className="sortGroup">
 						<Select
 							withCheckIcon={false}
 							className="sortSelect"
@@ -204,7 +204,7 @@ export const GameSearch = () => {
 							]}
 							value={sortOption}
 							onChange={handleSortChange}
-							pb={10}
+							p={10}
 						/>
 					</Group>
 				)}
@@ -228,7 +228,7 @@ export const GameSearch = () => {
 				</SimpleGrid>
 
 				{results && results.length > 0 && (
-					<Group>
+					<Group className="paginationGroup">
 						<Select
 							className="pageSizeSelect"
 							placeholder="Choose page size"
