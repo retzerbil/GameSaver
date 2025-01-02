@@ -7,8 +7,22 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 import "../app.scss";
 import Logo from "../assets/images/gameSaverLogo.png"
+import { useEffect, useState } from "react";
 
 export const Layout = () => {
+		const [isFooterVisible, setFooterVisible] = useState(false);
+	  
+		useEffect(() => {
+		  const handleScroll = () => {
+			const scrollPosition = window.scrollY;
+			const threshold = 0;
+			setFooterVisible(scrollPosition > threshold);
+		  };
+	  
+		  window.addEventListener('scroll', handleScroll);
+		  return () => window.removeEventListener('scroll', handleScroll);
+		}, []);
+
 	return (
 		<>
 			<section className="layoutBody">
@@ -60,6 +74,15 @@ export const Layout = () => {
 				</main>
 				<footer
 					className="footer"
+					style={{
+						bottom: 0,
+						width: '100%',
+						transition: 'background-color 1s ease',
+						visibility: isFooterVisible ? 'visible' : 'hidden',
+						opacity: isFooterVisible ? 1 : 0,
+						zIndex: 1000,
+						marginTop: 'auto',
+					  }}
 				>
 					<Container>
 						<Group justify="space-between">

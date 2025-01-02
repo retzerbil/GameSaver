@@ -11,8 +11,7 @@ export const Home = () => {
 						GameSaver is a website that allows you to search for the best deals
 						on video games. You can search for games by title, and GameSaver
 						will show you the best deals available from a variety of online
-						stores. You can also see a list of all the stores that GameSaver
-						searches for deals. GameSaver is a great way to save money on video
+						stores. GameSaver is a great way to save money on video
 						games and find the best deals available online.
 					</Text>
 					<NavLink to={"/Deals"}>
@@ -23,6 +22,7 @@ export const Home = () => {
 							radius="md"
 							size="xl"
 							className="homeDealButton"
+							m={50}
 						>
 							FIND ME DEALS!
 						</Button>
