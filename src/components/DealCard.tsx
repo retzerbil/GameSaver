@@ -1,4 +1,13 @@
-import { Anchor, Badge, Button, Card, Group, Image, Text } from "@mantine/core";
+import {
+	Anchor,
+	Badge,
+	Button,
+	Card,
+	Group,
+	HoverCard,
+	Image,
+	Text,
+} from "@mantine/core";
 import { IDealSearchResponse } from "../models/IDealSearchResponse";
 import { IStoreResponse } from "../models/IStoreResponse";
 import "../styles/dealcard.scss";
@@ -32,9 +41,26 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 					{deal.title}
 				</Text>
 
-				<Badge color="green" className="dealCardPercentage" ml="80%">
-					<Text fw={500}>{Math.round(+deal.savings)}%</Text>
-				</Badge>
+				{/*If the deal is no longer active, display a HoverCard with a message*/}
+				{+deal.savings === 0 ? (
+					<HoverCard width={280} shadow="md" closeDelay={500}>
+						<HoverCard.Target>
+							<Badge color="green" className="dealCardPercentage" ml="80%">
+								<Text fw={500}>{Math.round(+deal.savings)}%</Text>
+							</Badge>
+						</HoverCard.Target>
+						<HoverCard.Dropdown>
+							<Text fw={500} className="dealCardHoverText">
+								This deal shows as a 0% discount because it is no longer active
+								and will be removed from the API shortly.
+							</Text>
+						</HoverCard.Dropdown>
+					</HoverCard>
+				) : (
+					<Badge color="green" className="dealCardPercentage" ml="80%">
+						<Text fw={500}>{Math.round(+deal.savings)}%</Text>
+					</Badge>
+				)}
 
 				<Group justify="space-between" pb="md">
 					<Text td="line-through">${deal.normalPrice}</Text>
