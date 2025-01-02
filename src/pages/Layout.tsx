@@ -7,22 +7,8 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 import "../app.scss";
 import Logo from "../assets/images/gameSaverLogo.png"
-import { useEffect, useState } from "react";
 
 export const Layout = () => {
-		const [isFooterVisible, setFooterVisible] = useState(false);
-	  
-		useEffect(() => {
-		  const handleScroll = () => {
-			const scrollPosition = window.scrollY;
-			const threshold = 0;
-			setFooterVisible(scrollPosition > threshold);
-		  };
-	  
-		  window.addEventListener('scroll', handleScroll);
-		  return () => window.removeEventListener('scroll', handleScroll);
-		}, []);
-
 	return (
 		<>
 			<section className="layoutBody">
@@ -72,36 +58,6 @@ export const Layout = () => {
 				<main>
 					<Outlet />
 				</main>
-				<footer
-					className="footer"
-					style={{
-						bottom: 0,
-						width: '100%',
-						transition: 'background-color 1s ease',
-						visibility: isFooterVisible ? 'visible' : 'hidden',
-						opacity: isFooterVisible ? 1 : 0,
-						zIndex: 1000,
-						marginTop: 'auto',
-					  }}
-				>
-					<Container>
-						<Group justify="space-between">
-							<Text size="sm" color="dimmed">
-								Retzerbil coding LLC
-							</Text>
-							<Text size="xs" color="dimmed" mt="xs">
-								Disclaimer: The deals shown on this page are updated
-								periodically. Prices and availability may change quickly, and
-								deals can expire without notice. GameSaver recommends checking
-								the store's website for the most accurate and current
-								information. Please note that games with ended sales may take
-								time to be removed from the API and may show up as 0% discounts.
-								Please take note before purchasing that some deals and games may
-								not be available in your region.
-							</Text>
-						</Group>
-					</Container>
-				</footer>
 			</section>
 		</>
 	);

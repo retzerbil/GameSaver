@@ -6,6 +6,8 @@ import {
 	TextInput,
 	LoadingOverlay,
 	SimpleGrid,
+	Container,
+	Text,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { DealCard } from "./DealCard";
@@ -27,7 +29,6 @@ export const GameSearch = () => {
 	const [sortOption, setSortOption] = useState("highestDiscount");
 	const [stores, setStores] = useState<IStoreResponse[]>([]);
 
-
 	useEffect(() => {
 		const savedQuery = sessionStorage.getItem("lastQuery");
 		const savedResults = sessionStorage.getItem("lastResults");
@@ -46,35 +47,35 @@ export const GameSearch = () => {
 
 	useEffect(() => {
 		if (lastQuery) {
-		  fetchDeals();
+			fetchDeals();
 		}
-	  }, [lastQuery]);
+	}, [lastQuery]);
 
- const fetchDeals = async () => {
-    if (!query) return;
+	const fetchDeals = async () => {
+		if (!query) return;
 
-    setIsLoading(true);
-    setError(null);
+		setIsLoading(true);
+		setError(null);
 
-    try {
-      const response = await getDealsSearch(query, pageSize, activePage);
-      console.log("response", response);
-      setResults(response.deals);
-      setTotalResults(response.totalResults);
-      sortResults(sortOption, response.deals);
+		try {
+			const response = await getDealsSearch(query, pageSize, activePage);
+			console.log("response", response);
+			setResults(response.deals);
+			setTotalResults(response.totalResults);
+			sortResults(sortOption, response.deals);
 
-	  // Save the last query and results to session storage to persist data on page refresh or when navigating back to the page.
-	  // This is done to avoid making the same API call again when the user navigates back to the page.
-	  // The data is cleared when the user makes a new search.
-	  // Sessionstorage is used instead of localstorage so the data is cleared when the tab is closed.
-      sessionStorage.setItem('lastResults', JSON.stringify(response.deals));
-      sessionStorage.setItem('lastQuery', query);
-    } catch (err) {
-      setError("Failed to fetch games");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+			// Save the last query and results to session storage to persist data on page refresh or when navigating back to the page.
+			// This is done to avoid making the same API call again when the user navigates back to the page.
+			// The data is cleared when the user makes a new search.
+			// Sessionstorage is used instead of localstorage so the data is cleared when the tab is closed.
+			sessionStorage.setItem("lastResults", JSON.stringify(response.deals));
+			sessionStorage.setItem("lastQuery", query);
+		} catch (err) {
+			setError("Failed to fetch games");
+		} finally {
+			setIsLoading(false);
+		}
+	};
 
 	const handleSearch = (event: React.FormEvent) => {
 		event.preventDefault();
@@ -169,7 +170,6 @@ export const GameSearch = () => {
 							variant="filled"
 							color="orange"
 							className="searchButton"
-							
 						>
 							Search
 						</Button>
@@ -177,7 +177,7 @@ export const GameSearch = () => {
 				</form>
 
 				<LoadingOverlay
-				className="loadingOverlay"
+					className="loadingOverlay"
 					visible={isLoading}
 					zIndex={1000}
 					overlayProps={{ radius: "lg", blur: 2 }}
@@ -210,11 +210,13 @@ export const GameSearch = () => {
 					</Group>
 				)}
 				{/* SimpleGrid is used to display the deals in a grid layout. The number of columns changes based on the screen size. */}
-				<SimpleGrid cols={{ xs: 1, sm: 2, md: 3, lg: 5 }}
-				  style={{
-					justifyItems: 'center',
-					alignItems: 'center',
-				  }}>
+				<SimpleGrid
+					cols={{ xs: 1, sm: 2, md: 3, lg: 5 }}
+					style={{
+						justifyItems: "center",
+						alignItems: "center",
+					}}
+				>
 					{results?.map((deal) => {
 						const store = stores?.find(
 							(store) => store.storeID === String(deal.storeID)
@@ -248,6 +250,25 @@ export const GameSearch = () => {
 						/>
 					</Group>
 				)}
+				<footer className="footer">
+					<Container>
+						<Group justify="space-between">
+							<Text size="sm" color="dimmed">
+								Retzerbil coding LLC
+							</Text>
+							<Text size="xs" color="dimmed" mt="xs">
+								Disclaimer: The deals shown on this page are updated
+								periodically. Prices and availability may change quickly, and
+								deals can expire without notice. GameSaver recommends checking
+								the store's website for the most accurate and current
+								information. Please note that games with ended sales may take
+								time to be removed from the API and may show up as 0% discounts.
+								Please take note before purchasing that some deals and games may
+								not be available in your region.
+							</Text>
+						</Group>
+					</Container>
+				</footer>
 			</section>
 		</>
 	);
