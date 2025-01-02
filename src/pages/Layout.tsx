@@ -1,4 +1,4 @@
-import { Container, Group, Image, Text } from "@mantine/core";
+import { Group, Image, } from "@mantine/core";
 import {
 	IconBasketDiscount,
 	IconHome,
