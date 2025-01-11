@@ -90,7 +90,7 @@ export const DealCard = ({ deal, store }: IDealCardProps) => {
 				<Button
 					color="orange"
 					variant="filled"
-					w="200px"
+					w="100%"
 					mt="md"
 					radius="md"
 					className="dealCardButton"
