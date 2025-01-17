@@ -209,23 +209,26 @@ export const GameSearch = () => {
 						/>
 					</Group>
 				)}
-				{/* SimpleGrid is used to display the deals in a grid layout. The number of columns changes based on the screen size. */}
-				<SimpleGrid
-					cols={{ xs: 1, sm: 2, md: 3, lg: 5 }}
-					style={{
-						justifyItems: "center",
-						alignItems: "center",
-					}}
-				>
-					{results?.map((deal) => {
-						const store = stores?.find(
-							(store) => store.storeID === String(deal.storeID)
-						);
+				{results && results.length > 0 && (
+					<Container fluid m={"1rem"} p={"1rem"} className="dealCardContainer">
+						{/* SimpleGrid is used to display the deals in a grid layout. The number of columns changes based on the screen size. */}
+						<SimpleGrid
+							cols={{ xs: 1, sm: 2, md: 3, lg: 5 }}
+							style={{
+								justifyItems: "center",
+								alignItems: "center",
+							}}
+						>
+							{results?.map((deal) => {
+								const store = stores?.find(
+									(store) => store.storeID === String(deal.storeID)
+								);
 
-						return <DealCard key={deal.dealID} deal={deal} store={store} />;
-					})}
-				</SimpleGrid>
-
+								return <DealCard key={deal.dealID} deal={deal} store={store} />;
+							})}
+						</SimpleGrid>
+					</Container>
+				)}
 				{results && results.length > 0 && (
 					<Group className="paginationGroup">
 						<Select
