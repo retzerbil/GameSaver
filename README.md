@@ -1,6 +1,7 @@
 # GameSaver!
 ![Image of gamesaver site](/src/assets/images/example.png)
 This is a project for finding game deals and watching historical price for games and deals. 
+Visit the site [here!](https://gamesaver.vercel.app/)
 
 [Link to logbook](https://github.com/Medieinstitutet/fed23s-exjobb-loggbok-retzerbil)
 
